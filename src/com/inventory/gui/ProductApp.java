@@ -5,6 +5,20 @@
  */
 package com.inventory.gui;
 
+import com.inventory.dao.ProductDAO;
+import com.inventory.model.Product;
+import com.inventory.util.DBConnection;
+import static java.awt.image.ImageObserver.WIDTH;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sabbir
@@ -16,6 +30,7 @@ public class ProductApp extends javax.swing.JFrame {
      */
     public ProductApp() {
         initComponents();
+        getAllProduct();
     }
 
     /**
@@ -43,6 +58,15 @@ public class ProductApp extends javax.swing.JFrame {
         report = new javax.swing.JLabel();
         invoices = new javax.swing.JLabel();
         settings = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        addProduct = new javax.swing.JButton();
+        updateProduct = new javax.swing.JButton();
+        DeleteProduct = new javax.swing.JButton();
+        codeField = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableShowProduct = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +98,7 @@ public class ProductApp extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,6 +276,104 @@ public class ProductApp extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel2.setText("Product Detail");
+
+        addProduct.setText("Add Product");
+        addProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductActionPerformed(evt);
+            }
+        });
+
+        updateProduct.setText("Update product");
+        updateProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateProductActionPerformed(evt);
+            }
+        });
+
+        DeleteProduct.setText("Delete Product");
+        DeleteProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteProductActionPerformed(evt);
+            }
+        });
+
+        codeField.setBackground(new java.awt.Color(204, 255, 153));
+        codeField.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        codeField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        codeField.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(addProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(updateProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(DeleteProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 22, Short.MAX_VALUE))
+            .addComponent(addProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(updateProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(DeleteProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(codeField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        tableShowProduct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableShowProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableShowProductMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableShowProduct);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addGap(13, 13, 13))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -260,7 +382,10 @@ public class ProductApp extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +394,12 @@ public class ProductApp extends javax.swing.JFrame {
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -345,6 +475,116 @@ public class ProductApp extends javax.swing.JFrame {
         new DashboardApp().setVisible(true);
     }//GEN-LAST:event_dashboardMouseClicked
 
+    private void addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductActionPerformed
+//        Product p = new Product();
+//        p.setProductCode(Integer.valueOf(productCodeVar));
+//        p.setProductName(productNameVar);
+//        p.setPrice(Double.valueOf(productpriceVar));
+//        p.setCategoryName(categoryNameVar);
+//        p.setCategoryCode(Integer.valueOf(categoryCodeVar));
+//        System.out.println(p.getProductCode());
+//        int status = new ProductDAO().save(p);
+//        if(status > 0 ) JOptionPane.showMessageDialog(rootPane, "Product Saved!");
+//        else JOptionPane.showMessageDialog(rootPane, "Product not Saved!");
+        this.setVisible(false);
+        new ProductEditApp().setVisible(true);
+    }//GEN-LAST:event_addProductActionPerformed
+    int productCodeStatic;
+    private void tableShowProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableShowProductMouseClicked
+        int row = tableShowProduct.getSelectedRow();
+        int productCodeCol = Integer.parseInt(tableShowProduct.getValueAt(row, 0).toString());
+        productCodeStatic = productCodeCol;
+        codeField.setText(Integer.toString(productCodeStatic));
+    }//GEN-LAST:event_tableShowProductMouseClicked
+
+    private void updateProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProductActionPerformed
+        Product productsUpdate = new Product();
+        productsUpdate.setProductCode(Integer.valueOf(productCodeVar));
+        productsUpdate.setProductName(productNameVar);
+        productsUpdate.setPrice(Double.valueOf(productpriceVar));
+        productsUpdate.setCategoryName(categoryNameVar);
+        productsUpdate.setCategoryCode(Integer.valueOf(categoryCodeVar));
+        int status = new ProductDAO().update(productsUpdate);
+        if(status > 0 ) JOptionPane.showMessageDialog(rootPane, "Product Saved!");
+        else JOptionPane.showMessageDialog(rootPane, "Product not Saved!");
+    }//GEN-LAST:event_updateProductActionPerformed
+
+    private void DeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteProductActionPerformed
+        int option = JOptionPane.showConfirmDialog(rootPane, "Do you want to delete?", null, WIDTH);
+        if(option == 0){
+            String sql = "delete from product where product_code = ?";
+            try {
+                PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
+                ps.setInt(1, Integer.valueOf(codeField.getText()));
+                int status = ps.executeUpdate();
+                if(status >0){
+                    JOptionPane.showMessageDialog(rootPane, "Product deleted!");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductApp.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                getAllProduct();
+            }
+        }
+    }//GEN-LAST:event_DeleteProductActionPerformed
+
+    private void getAllProduct(){
+        List<Product> products = new ProductDAO().getAll();
+        
+        for (Product product : products) {
+            System.out.println(product.getProductCode() + " " + 
+                    product.getProductName());
+        }
+        
+        String colums[] = {"product_code", "product_name", "product_price", "category_name", "category_code"};
+        String data[][] = new String[products.size()][5];
+        
+        int i =0;
+//            while(i<products.size()){
+        for (Product product : products) {
+            
+                data[i][0] = product.getProductCode() + "";
+                data[i][1] = product.getProductName();
+                data[i][2] = product.getPrice() + "";
+                data[i][3] = product.getCategoryName();
+                data[i][4] = product.getCategoryCode() + "";
+                i++;
+            }
+//        }
+//            System.out.println(products.size());
+//            System.out.println(data[i].length);
+        
+        
+//        for (int j = 0; j < products.size(); j++) {
+//            System.out.println(data[j][0]);
+//            System.out.println(data[j][1]);
+//            System.out.println(data[j][2]);
+//            System.out.println(data[j][3]);
+//            System.out.println(data[j][4]);
+//        }
+        DefaultTableModel model = new DefaultTableModel(data, colums);
+        tableShowProduct.setModel(model);
+            tableShowProduct.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+                @Override
+                public void valueChanged(ListSelectionEvent e) {
+                     int pCV = tableShowProduct.getSelectedRow();
+                    productCodeVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 0).toString();
+                    productNameVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 1).toString();
+                    productpriceVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 2).toString();
+                    categoryNameVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 3).toString();
+                    categoryCodeVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 4).toString();
+                     
+                    System.out.println(productCodeVar + " " +productNameVar + " " +productpriceVar
+                    + " " +categoryNameVar+ " " +categoryCodeVar);
+                }
+            });
+        
+    }
+    String productCodeVar;
+    String productNameVar;
+    String productpriceVar;
+    String categoryNameVar;
+    String categoryCodeVar;
     /**
      * @param args the command line arguments
      */
@@ -381,15 +621,22 @@ public class ProductApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DeleteProduct;
+    private javax.swing.JButton addProduct;
     private javax.swing.JLabel branch;
     private javax.swing.JLabel category;
+    private javax.swing.JLabel codeField;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel invoices;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel pricing;
     private javax.swing.JLabel products;
     private javax.swing.JLabel purchaseorder;
@@ -397,5 +644,7 @@ public class ProductApp extends javax.swing.JFrame {
     private javax.swing.JLabel sales;
     private javax.swing.JLabel settings;
     private javax.swing.JLabel supplier;
+    private javax.swing.JTable tableShowProduct;
+    private javax.swing.JButton updateProduct;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,6 @@ package com.inventory.dao;
  *
  * @author sabbir
  */
-public class InventoryDAO {
+public class SupplierDAO {
     
 }
