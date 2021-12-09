@@ -10,17 +10,17 @@ package com.inventory.model;
  * @author sabbir
  */
 public class Supplier {
-    private int supplierCode;
+    private String supplierCode;
     private String supplierName;
-    private int companyCode;
+    private String companyCode;
     private String companyName;
     private String address;
 
-    public int getSupplierCode() {
+    public String getSupplierCode() {
         return supplierCode;
     }
 
-    public void setSupplierCode(int supplierCode) {
+    public void setSupplierCode(String supplierCode) {
         this.supplierCode = supplierCode;
     }
 
@@ -32,11 +32,11 @@ public class Supplier {
         this.supplierName = supplierName;
     }
 
-    public int getCompanyCode() {
+    public String getCompanyCode() {
         return companyCode;
     }
 
-    public void setCompanyCode(int companyCode) {
+    public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
     }
 

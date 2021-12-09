@@ -49,7 +49,7 @@ public class ProductApp extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         dashboard = new javax.swing.JLabel();
         supplier = new javax.swing.JLabel();
-        branch = new javax.swing.JLabel();
+        inventory = new javax.swing.JLabel();
         products = new javax.swing.JLabel();
         category = new javax.swing.JLabel();
         purchaseorder = new javax.swing.JLabel();
@@ -129,14 +129,14 @@ public class ProductApp extends javax.swing.JFrame {
             }
         });
 
-        branch.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        branch.setForeground(new java.awt.Color(255, 255, 255));
-        branch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/inventory/iconsImages/branch.png"))); // NOI18N
-        branch.setText("Branch");
-        branch.setIconTextGap(8);
-        branch.addMouseListener(new java.awt.event.MouseAdapter() {
+        inventory.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        inventory.setForeground(new java.awt.Color(255, 255, 255));
+        inventory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/inventory/iconsImages/branch.png"))); // NOI18N
+        inventory.setText("Inventory Info");
+        inventory.setIconTextGap(8);
+        inventory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                branchMouseClicked(evt);
+                inventoryMouseClicked(evt);
             }
         });
 
@@ -237,7 +237,7 @@ public class ProductApp extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(dashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(supplier, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(branch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inventory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(products, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(category, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(purchaseorder, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -256,7 +256,7 @@ public class ProductApp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(supplier, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(branch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inventory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(products, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -458,10 +458,10 @@ public class ProductApp extends javax.swing.JFrame {
         new ProductApp().setVisible(true);
     }//GEN-LAST:event_productsMouseClicked
 
-    private void branchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchMouseClicked
+    private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
         this.setVisible(false);
-        new BranchApp().setVisible(true);
-    }//GEN-LAST:event_branchMouseClicked
+        new InventoryApp().setVisible(true);
+    }//GEN-LAST:event_inventoryMouseClicked
 
     private void supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierMouseClicked
         // TODO add your handling code here:
@@ -531,10 +531,10 @@ public class ProductApp extends javax.swing.JFrame {
     private void getAllProduct(){
         List<Product> products = new ProductDAO().getAll();
         
-        for (Product product : products) {
-            System.out.println(product.getProductCode() + " " + 
-                    product.getProductName());
-        }
+//        for (Product product : products) {
+//            System.out.println(product.getProductCode() + " " + 
+//                    product.getProductName());
+//        }
         
         String colums[] = {"product_code", "product_name", "product_price", "category_name", "category_code"};
         String data[][] = new String[products.size()][5];
@@ -567,7 +567,7 @@ public class ProductApp extends javax.swing.JFrame {
             tableShowProduct.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                 @Override
                 public void valueChanged(ListSelectionEvent e) {
-                     int pCV = tableShowProduct.getSelectedRow();
+                    int pCV = tableShowProduct.getSelectedRow();
                     productCodeVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 0).toString();
                     productNameVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 1).toString();
                     productpriceVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 2).toString();
@@ -623,10 +623,10 @@ public class ProductApp extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteProduct;
     private javax.swing.JButton addProduct;
-    private javax.swing.JLabel branch;
     private javax.swing.JLabel category;
     private javax.swing.JLabel codeField;
     private javax.swing.JLabel dashboard;
+    private javax.swing.JLabel inventory;
     private javax.swing.JLabel invoices;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

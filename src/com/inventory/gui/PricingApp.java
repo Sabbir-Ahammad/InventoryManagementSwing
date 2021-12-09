@@ -415,7 +415,7 @@ public class PricingApp extends javax.swing.JFrame {
 
     private void branchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchMouseClicked
         this.setVisible(false);
-        new BranchApp().setVisible(true);
+        new InventoryApp().setVisible(true);
     }//GEN-LAST:event_branchMouseClicked
 
     private void productsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsMouseClicked

@@ -415,7 +415,7 @@ public class BranchAddApp extends javax.swing.JFrame {
 
     private void branchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchMouseClicked
         this.setVisible(false);
-        new BranchApp().setVisible(true);
+        new InventoryApp().setVisible(true);
     }//GEN-LAST:event_branchMouseClicked
 
     private void productsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsMouseClicked
@@ -460,7 +460,7 @@ public class BranchAddApp extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        new BranchApp().setVisible(true);
+        new InventoryApp().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

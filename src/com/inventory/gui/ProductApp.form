@@ -153,7 +153,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="dashboard" alignment="0" max="32767" attributes="0"/>
                           <Component id="supplier" alignment="0" max="32767" attributes="0"/>
-                          <Component id="branch" alignment="0" max="32767" attributes="0"/>
+                          <Component id="inventory" alignment="0" max="32767" attributes="0"/>
                           <Component id="products" alignment="0" max="32767" attributes="0"/>
                           <Component id="category" alignment="0" max="32767" attributes="0"/>
                           <Component id="purchaseorder" alignment="0" max="32767" attributes="0"/>
@@ -175,7 +175,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="supplier" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="branch" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="inventory" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="products" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -234,7 +234,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="supplierMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="branch">
+            <Component class="javax.swing.JLabel" name="inventory">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="1"/>
@@ -245,11 +245,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/inventory/iconsImages/branch.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Branch"/>
+                <Property name="text" type="java.lang.String" value="Inventory Info"/>
                 <Property name="iconTextGap" type="int" value="8"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="branchMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="inventoryMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="products">
