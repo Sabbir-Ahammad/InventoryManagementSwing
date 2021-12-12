@@ -550,7 +550,7 @@ public class InventoryApp extends javax.swing.JFrame {
     private void purchaseOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseOrderMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new PurchaseOrderApp().setVisible(true);
+        new PurchaseOrderApp1().setVisible(true);
     }//GEN-LAST:event_purchaseOrderMouseClicked
 
     private void salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesMouseClicked

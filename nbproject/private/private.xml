@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/PurchaseOrderApp.java</file>
             <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/ProductApp.java</file>
             <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/dao/CategoryDAO.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/SupplierApp.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/BranchApp.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/dao/SupplierDAO.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/CategoryApp.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/ProductBatchApp.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/dao/PurchaseOrderDAO.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/InvoiceEditApp.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/DashboardApp.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/InvoiceApp.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/model/PurchaseOrder.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/InvoiceShowApp.java</file>
         </group>
     </open-files>
 </project-private>
