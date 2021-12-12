@@ -102,17 +102,17 @@ public class InventoryDAO implements ICommonInterface<Inventory>{
 
     @Override
     public int update(Inventory t) {
-        String sql = "update supplier set inventory_code = ?, inventory_name = ?, contract_no =?, email = ?, location = ? where inventory_code = ?";
+        String sql = "update inventory set inventory_code = ?, inventory_name = ?, contract_no =?, email = ?, location = ? where inventory_code = ?";
         int status = 0;
         try {
             con = DBConnection.getConnection();
             ps = con.prepareStatement(sql);
             ps.setString(1, t.getInventoryCode());
-            ps.setString(2, t.getInventoryCode());
-            ps.setString(3, t.getInventoryName());
-            ps.setString(4, t.getContractNo());
-            ps.setString(5, t.getEmail());
-            ps.setString(6, t.getLocation());
+            ps.setString(2, t.getInventoryName());
+            ps.setString(3, t.getContractNo());
+            ps.setString(4, t.getEmail());
+            ps.setString(5, t.getLocation());
+            ps.setString(6, t.getInventoryCode());
             status = ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
