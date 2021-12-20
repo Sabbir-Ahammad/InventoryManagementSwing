@@ -5,12 +5,12 @@
         <group>
             <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/PurchaseOrderApp.java</file>
             <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/ProductApp.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/dao/CategoryDAO.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/dao/PurchaseOrderDAO.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/dao/ProductDAO.java</file>
             <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/InvoiceEditApp.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/DashboardApp.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/ProductEditApp.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/model/Invoice.java</file>
             <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/InvoiceApp.java</file>
-            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/model/PurchaseOrder.java</file>
+            <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/dao/InvoiceDAO.java</file>
             <file>file:/G:/Isdb/Core_course/java/practice/InventoryManagementSwing/src/com/inventory/gui/InvoiceShowApp.java</file>
         </group>
     </open-files>
