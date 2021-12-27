@@ -529,10 +529,10 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="categoryCode" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="categoryName" max="32767" attributes="0"/>
-                                  <Component id="productCodefield" max="32767" attributes="0"/>
-                                  <Component id="productNameField" max="32767" attributes="0"/>
+                                  <Component id="categoryNameField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="productCodeField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="productNameField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="categoryCodeField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -545,21 +545,21 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel3" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="productNameField" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="productCodeField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel4" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Component id="productCodefield" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="productNameField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="categoryName" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="categoryCodeField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="categoryCode" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Component id="categoryNameField" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="28" max="32767" attributes="0"/>
@@ -578,30 +578,50 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Name"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="productNameField">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel4">
-                      <Properties>
                         <Property name="text" type="java.lang.String" value="Code"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="productCodefield">
+                    <Component class="javax.swing.JLabel" name="jLabel4">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Name"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel5">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Category Name"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="categoryNameField">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Category Code"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="categoryName">
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="categoryCode">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel6">
+                    <Component class="javax.swing.JComboBox" name="productCodeField">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Category Name"/>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="productNameField">
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="categoryCodeField">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>

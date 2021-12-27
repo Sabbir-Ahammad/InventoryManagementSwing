@@ -5,6 +5,17 @@
  */
 package com.inventory.gui;
 
+import com.inventory.dao.CategoryDAO;
+import com.inventory.dao.PricingDAO;
+import com.inventory.model.Category;
+import com.inventory.model.Pricing;
+import java.awt.event.ActionEvent;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sabbir
@@ -16,6 +27,8 @@ public class PricingApp extends javax.swing.JFrame {
      */
     public PricingApp() {
         initComponents();
+        getAllPricing();
+        getTabledata();
     }
 
     /**
@@ -31,6 +44,7 @@ public class PricingApp extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         dashboard = new javax.swing.JLabel();
         supplier = new javax.swing.JLabel();
@@ -44,22 +58,21 @@ public class PricingApp extends javax.swing.JFrame {
         invoices = new javax.swing.JLabel();
         settings = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         addCriteriaBtn = new javax.swing.JButton();
         deleteCriteriaBtn = new javax.swing.JButton();
-        editCriteriaBtn = new javax.swing.JButton();
+        updateCriteriaBtn = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        pricingCode = new javax.swing.JTextField();
+        pricingCodeField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        vatRate = new javax.swing.JTextField();
+        vatRateField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        discount = new javax.swing.JTextField();
+        discountField = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableShowPricing = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,15 +100,24 @@ public class PricingApp extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(236, 245, 248));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel5.setText("Pricing Criteria");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 722, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 44, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel4.setBackground(new java.awt.Color(16, 76, 82));
@@ -269,68 +291,84 @@ public class PricingApp extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(0, 50));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Pricing Criteria");
-
         addCriteriaBtn.setText("Add New Criteria");
+        addCriteriaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addCriteriaBtnMouseClicked(evt);
+            }
+        });
+        addCriteriaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCriteriaBtnActionPerformed(evt);
+            }
+        });
 
         deleteCriteriaBtn.setText("Delete Criteria");
+        deleteCriteriaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCriteriaBtnActionPerformed(evt);
+            }
+        });
 
-        editCriteriaBtn.setText("Edit Criteria");
+        updateCriteriaBtn.setText("Update Criteria");
+        updateCriteriaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCriteriaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(199, 199, 199)
                 .addComponent(addCriteriaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(deleteCriteriaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editCriteriaBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(updateCriteriaBtn)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteCriteriaBtn)
                     .addComponent(addCriteriaBtn)
-                    .addComponent(editCriteriaBtn))
-                .addContainerGap())
+                    .addComponent(updateCriteriaBtn))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel3.setText("Pricing Code");
 
-        pricingCode.addActionListener(new java.awt.event.ActionListener() {
+        pricingCodeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pricingCodeActionPerformed(evt);
+                pricingCodeFieldActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Vat Rate");
 
-        vatRate.addActionListener(new java.awt.event.ActionListener() {
+        vatRateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vatRateActionPerformed(evt);
+                vatRateFieldActionPerformed(evt);
             }
         });
 
         jLabel6.setText("Discount");
 
-        discount.addActionListener(new java.awt.event.ActionListener() {
+        discountField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                discountActionPerformed(evt);
+                discountFieldActionPerformed(evt);
             }
         });
 
@@ -344,15 +382,15 @@ public class PricingApp extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pricingCode, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pricingCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(vatRate, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(vatRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(discount, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(discountField, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -360,18 +398,20 @@ public class PricingApp extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pricingCode)
+                    .addComponent(pricingCodeField)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(vatRate)
+                    .addComponent(vatRateField)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(discount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(discountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -384,7 +424,9 @@ public class PricingApp extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+
+        tableShowPricing.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -395,7 +437,7 @@ public class PricingApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableShowPricing);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -544,18 +586,91 @@ public class PricingApp extends javax.swing.JFrame {
         new SettingsApp().setVisible(true);
     }//GEN-LAST:event_settingsMouseClicked
 
-    private void pricingCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricingCodeActionPerformed
+    private void pricingCodeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricingCodeFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pricingCodeActionPerformed
+    }//GEN-LAST:event_pricingCodeFieldActionPerformed
 
-    private void vatRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vatRateActionPerformed
+    private void vatRateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vatRateFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_vatRateActionPerformed
+    }//GEN-LAST:event_vatRateFieldActionPerformed
 
-    private void discountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountActionPerformed
+    private void discountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_discountActionPerformed
+    }//GEN-LAST:event_discountFieldActionPerformed
+    
+    private void addCriteriaBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+    }   
+    
+    private void addCriteriaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCriteriaBtnMouseClicked
+        Pricing p = new Pricing();
+        p.setPricingCode(pricingCodeField.getText());
+        p.setVatRate(vatRateField.getText());
+        p.setDiscount(discountField.getText());
+        int status = new PricingDAO().save(p);
+        if (status > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Pricing Criteria Saved!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Pricing Criteria Could be Saved!");
+        }
+    }//GEN-LAST:event_addCriteriaBtnMouseClicked
 
+    private void deleteCriteriaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCriteriaBtnActionPerformed
+        int option = JOptionPane.showConfirmDialog(null, "Do you want to delete ?");
+        if (option == 0) {
+            Pricing p = new Pricing();
+            p.setPricingCode(pricingCodeField.getText());
+            int status = new PricingDAO().delete(p);
+            if (status > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Pricing Criteria delete!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Pricing Criteria is Not delete!");
+            }
+        }
+    }//GEN-LAST:event_deleteCriteriaBtnActionPerformed
+
+    private void updateCriteriaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCriteriaBtnActionPerformed
+        Pricing price = new Pricing();
+        price.setPricingCode(pricingCodeField.getText());
+        price.setVatRate(vatRateField.getText());
+        price.setDiscount(discountField.getText());
+        int status = new PricingDAO().update(price);
+        if(status > 0 ) JOptionPane.showMessageDialog(rootPane, "Category Saved!");
+        else JOptionPane.showMessageDialog(rootPane, "Category not Saved!");
+    }//GEN-LAST:event_updateCriteriaBtnActionPerformed
+    
+    public void getAllPricing(){
+        List<Pricing> pricings = new PricingDAO().getAll();
+        String columns[] = {"Pricing Code", "Vat Rate", "Discount"};
+        String data[][] = new String[pricings.size()][5];
+        int i =0;
+        for (Pricing p : pricings) {
+                data[i][0] = p.getPricingCode();
+                data[i][1] = p.getVatRate();
+                data[i][2] = p.getDiscount();
+                i++;
+            }
+        DefaultTableModel model = new DefaultTableModel(data, columns);
+        tableShowPricing.setModel(model);
+    }
+    String pricingCodeVar;
+    String vatVar;
+    String discountVar;
+    public void getTabledata(){
+        tableShowPricing.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                pricingCodeVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 0)).toString();
+                vatVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 1)).toString();
+                discountVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 2)).toString();
+                pricingCodeField.setText(pricingCodeVar);
+                vatRateField.setText(vatVar);
+                discountField.setText(discountVar);
+            }
+        });
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -598,13 +713,12 @@ public class PricingApp extends javax.swing.JFrame {
     private javax.swing.JLabel category;
     private javax.swing.JLabel dashboard;
     private javax.swing.JButton deleteCriteriaBtn;
-    private javax.swing.JTextField discount;
-    private javax.swing.JButton editCriteriaBtn;
+    private javax.swing.JTextField discountField;
     private javax.swing.JLabel invoices;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -616,15 +730,16 @@ public class PricingApp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel pricing;
-    private javax.swing.JTextField pricingCode;
+    private javax.swing.JTextField pricingCodeField;
     private javax.swing.JLabel products;
     private javax.swing.JLabel purchaseorder;
     private javax.swing.JLabel report;
     private javax.swing.JLabel sales;
     private javax.swing.JLabel settings;
     private javax.swing.JLabel supplier;
-    private javax.swing.JTextField vatRate;
+    private javax.swing.JTable tableShowPricing;
+    private javax.swing.JButton updateCriteriaBtn;
+    private javax.swing.JTextField vatRateField;
     // End of variables declaration//GEN-END:variables
 }
