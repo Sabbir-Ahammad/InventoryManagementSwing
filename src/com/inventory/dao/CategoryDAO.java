@@ -70,7 +70,7 @@ public class CategoryDAO implements ICommonInterface<Category>{
     @Override
     public List<Category> getAll() {
         String sql = "select * from category";
-        List<Category> Categories = new ArrayList<Category>();
+        List<Category> categories = new ArrayList<Category>();
         try {
             con = DBConnection.getConnection();
             ps = con.prepareStatement(sql);
@@ -80,13 +80,13 @@ public class CategoryDAO implements ICommonInterface<Category>{
                 Category showCategory = new Category();
                 showCategory.setCategoryName(rs.getString("category_name"));
                 showCategory.setCategoryCode(rs.getString("category_code"));
-                Categories.add(showCategory);
+                categories.add(showCategory);
                 i++;
             }
         } catch (SQLException ex) {
             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Categories;
+        return categories;
     }
 
     @Override

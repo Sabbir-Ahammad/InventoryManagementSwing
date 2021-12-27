@@ -64,13 +64,13 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        productNameField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        productCodefield = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        categoryName = new javax.swing.JTextField();
-        categoryCode = new javax.swing.JTextField();
+        categoryNameField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        productCodeField = new javax.swing.JComboBox();
+        productNameField = new javax.swing.JTextField();
+        categoryCodeField = new javax.swing.JComboBox();
         jPanel11 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -364,13 +364,17 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Product Detail");
 
-        jLabel3.setText("Name");
+        jLabel3.setText("Code");
 
-        jLabel4.setText("Code");
+        jLabel4.setText("Name");
 
-        jLabel5.setText("Category Code");
+        jLabel5.setText("Category Name");
 
-        jLabel6.setText("Category Name");
+        jLabel6.setText("Category Code");
+
+        productCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        categoryCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -385,10 +389,10 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(categoryCode)
-                    .addComponent(categoryName)
-                    .addComponent(productCodefield)
-                    .addComponent(productNameField))
+                    .addComponent(categoryNameField)
+                    .addComponent(productCodeField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productNameField)
+                    .addComponent(categoryCodeField, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -398,18 +402,18 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(productCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productCodefield, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(productNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(categoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoryCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(categoryCode, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoryNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -898,8 +902,8 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
     private javax.swing.JButton addProducttBtn;
     private javax.swing.JLabel branch1;
     private javax.swing.JLabel category1;
-    private javax.swing.JTextField categoryCode;
-    private javax.swing.JTextField categoryName;
+    private javax.swing.JComboBox categoryCodeField;
+    private javax.swing.JTextField categoryNameField;
     private javax.swing.JButton confirmPurchaseBtn;
     private javax.swing.JLabel dashboard1;
     private javax.swing.JButton deleteProductBtn;
@@ -950,7 +954,7 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
     private javax.swing.JTextField orderingDateField;
     private javax.swing.JTextField paymentMethodField;
     private javax.swing.JLabel pricing1;
-    private javax.swing.JTextField productCodefield;
+    private javax.swing.JComboBox productCodeField;
     private javax.swing.JTextField productNameField;
     private javax.swing.JTextField productPriceField;
     private javax.swing.JTextField productQuantityField;
