@@ -445,7 +445,7 @@ public class ProductApp extends javax.swing.JFrame {
 
     private void purchaseorderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseorderMouseClicked
         this.setVisible(false);
-        new PurchaseOrderApp1().setVisible(true);
+        new PurchaseOrderApp().setVisible(true);
     }//GEN-LAST:event_purchaseorderMouseClicked
 
     private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
@@ -460,7 +460,7 @@ public class ProductApp extends javax.swing.JFrame {
 
     private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
         this.setVisible(false);
-        new InventoryApp().setVisible(true);
+        new InventoryInfoApp().setVisible(true);
     }//GEN-LAST:event_inventoryMouseClicked
 
     private void supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierMouseClicked
