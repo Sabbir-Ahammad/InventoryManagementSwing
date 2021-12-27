@@ -276,6 +276,11 @@ public class InvoiceApp extends javax.swing.JFrame {
         jButton2.setText("Delete Invoice");
 
         jButton3.setText("Show / Print");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -387,7 +392,7 @@ public class InvoiceApp extends javax.swing.JFrame {
 
     private void branchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchMouseClicked
         this.setVisible(false);
-        new InventoryApp().setVisible(true);
+        new InventoryInfoApp().setVisible(true);
     }//GEN-LAST:event_branchMouseClicked
 
     private void productsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsMouseClicked
@@ -402,7 +407,7 @@ public class InvoiceApp extends javax.swing.JFrame {
 
     private void purchaseorderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseorderMouseClicked
         this.setVisible(false);
-        new PurchaseOrderApp1().setVisible(true);
+        new PurchaseOrderApp().setVisible(true);
     }//GEN-LAST:event_purchaseorderMouseClicked
 
     private void salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesMouseClicked
@@ -435,6 +440,12 @@ public class InvoiceApp extends javax.swing.JFrame {
         this.setVisible(false);
         new ProductEditApp().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+//        this.setVisible(false);
+        new InvoiceShowApp().setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

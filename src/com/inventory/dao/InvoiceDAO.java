@@ -82,7 +82,38 @@ public class InvoiceDAO implements ICommonInterface<Invoice>{
 
     @Override
     public int update(Invoice t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "update invoice set invoice_no = ?, product_order_code = ?, supplier_name = ?, supplier_contract = ?, supplier_address = ?, issue_date = ?, due_date = ?, product_names = ?, product_prices = ?, category_name = ?, total_price = ?, discount = ?, unit_price = ? where invoice_no = ?";
+        int status = 0;
+        try {
+            con = DBConnection.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, t.getInvoiceNo());
+            ps.setString(2, t.getProductOrderCode());
+            System.out.println(t.getInvoiceNo() +" " + t.getProductOrderCode());
+            ps.setString(3, t.getSupplierName());
+            ps.setString(4, t.getSupplierContract());
+            ps.setString(5, t.getSupplierAddress());
+            ps.setDate(6, new Date(t.getIssueDate().getTime()));
+            ps.setDate(7, new Date(t.getDueDate().getTime()));
+            ps.setString(8, t.getProductNames());
+            ps.setString(9, t.getProductPrices());
+            ps.setString(10, t.getCategoryName());
+            ps.setString(11, t.getTotalPrice());
+            ps.setString(12, t.getDiscount());
+            ps.setString(13, t.getUnitPrice());
+            ps.setString(14, t.getInvoiceNo());
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }finally{
+            try {
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return status;
     }
     }
 

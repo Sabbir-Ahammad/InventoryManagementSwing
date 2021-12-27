@@ -287,11 +287,50 @@ public class DashboardApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
-        // TODO add your handling code here:
+    private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
         this.setVisible(false);
-        new DashboardApp().setVisible(true);
-    }//GEN-LAST:event_dashboardMouseClicked
+        new SettingsApp().setVisible(true);
+    }//GEN-LAST:event_settingsMouseClicked
+
+    private void invoicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invoicesMouseClicked
+        this.setVisible(false);
+        new InvoiceApp().setVisible(true);
+    }//GEN-LAST:event_invoicesMouseClicked
+
+    private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
+        this.setVisible(false);
+        new ReportApp().setVisible(true);
+    }//GEN-LAST:event_reportMouseClicked
+
+    private void pricingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pricingMouseClicked
+        this.setVisible(false);
+        new PricingApp().setVisible(true);
+    }//GEN-LAST:event_pricingMouseClicked
+
+    private void salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesMouseClicked
+        this.setVisible(false);
+        new SalesApp().setVisible(true);
+    }//GEN-LAST:event_salesMouseClicked
+
+    private void purchaseorderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseorderMouseClicked
+        this.setVisible(false);
+        new PurchaseOrderApp().setVisible(true);
+    }//GEN-LAST:event_purchaseorderMouseClicked
+
+    private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
+        this.setVisible(false);
+        new CategoryApp().setVisible(true);
+    }//GEN-LAST:event_categoryMouseClicked
+
+    private void productsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsMouseClicked
+        this.setVisible(false);
+        new ProductApp().setVisible(true);
+    }//GEN-LAST:event_productsMouseClicked
+
+    private void branchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchMouseClicked
+        this.setVisible(false);
+        new InventoryInfoApp().setVisible(true);
+    }//GEN-LAST:event_branchMouseClicked
 
     private void supplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supplierMouseClicked
         // TODO add your handling code here:
@@ -299,50 +338,11 @@ public class DashboardApp extends javax.swing.JFrame {
         new SupplierApp().setVisible(true);
     }//GEN-LAST:event_supplierMouseClicked
 
-    private void branchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branchMouseClicked
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        // TODO add your handling code here:
         this.setVisible(false);
-        new InventoryApp().setVisible(true);
-    }//GEN-LAST:event_branchMouseClicked
-
-    private void productsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsMouseClicked
-        this.setVisible(false);
-        new ProductApp().setVisible(true);
-    }//GEN-LAST:event_productsMouseClicked
-
-    private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
-        this.setVisible(false);
-        new CategoryApp().setVisible(true);
-    }//GEN-LAST:event_categoryMouseClicked
-
-    private void purchaseorderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseorderMouseClicked
-        this.setVisible(false);
-        new PurchaseOrderApp().setVisible(true);
-    }//GEN-LAST:event_purchaseorderMouseClicked
-
-    private void salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesMouseClicked
-        this.setVisible(false);
-        new SalesApp().setVisible(true);
-    }//GEN-LAST:event_salesMouseClicked
-
-    private void pricingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pricingMouseClicked
-        this.setVisible(false);
-        new PricingApp().setVisible(true);
-    }//GEN-LAST:event_pricingMouseClicked
-
-    private void reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportMouseClicked
-        this.setVisible(false);
-        new ReportApp().setVisible(true);
-    }//GEN-LAST:event_reportMouseClicked
-
-    private void invoicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invoicesMouseClicked
-        this.setVisible(false);
-        new InvoiceApp().setVisible(true);
-    }//GEN-LAST:event_invoicesMouseClicked
-
-    private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
-        this.setVisible(false);
-        new SettingsApp().setVisible(true);
-    }//GEN-LAST:event_settingsMouseClicked
+        new DashboardApp().setVisible(true);
+    }//GEN-LAST:event_dashboardMouseClicked
 
     /**
      * @param args the command line arguments
