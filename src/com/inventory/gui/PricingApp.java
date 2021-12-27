@@ -5,10 +5,6 @@
  */
 package com.inventory.gui;
 
-import com.inventory.dao.PricingDAO;
-import com.inventory.model.Pricing;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author sabbir
@@ -89,7 +85,7 @@ public class PricingApp extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(236, 245, 248));
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(0));
+        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -280,11 +276,6 @@ public class PricingApp extends javax.swing.JFrame {
         jLabel2.setText("Pricing Criteria");
 
         addCriteriaBtn.setText("Add New Criteria");
-        addCriteriaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCriteriaBtnActionPerformed(evt);
-            }
-        });
 
         deleteCriteriaBtn.setText("Delete Criteria");
 
@@ -316,6 +307,8 @@ public class PricingApp extends javax.swing.JFrame {
                     .addComponent(editCriteriaBtn))
                 .addContainerGap())
         );
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setText("Pricing Code");
 
@@ -562,23 +555,6 @@ public class PricingApp extends javax.swing.JFrame {
     private void discountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_discountActionPerformed
-
-    private void addCriteriaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCriteriaBtnActionPerformed
-        String priceCode = pricingCode.getText();
-        String vatRateData = vatRate.getText();
-        String discountdata = discount.getText();
-        Pricing p = new Pricing();
-        p.setPricingCode(priceCode);
-        p.setVatRate(vatRateData);
-        p.setDiscount(discountdata);
-        int status = new PricingDAO().save(p);
-        if (status > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Pricing criteria Saved!");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Pricing criteria could not be Saved!");
-
-        }
-    }//GEN-LAST:event_addCriteriaBtnActionPerformed
 
     /**
      * @param args the command line arguments
