@@ -276,6 +276,16 @@ public class PricingApp extends javax.swing.JFrame {
         jLabel2.setText("Pricing Criteria");
 
         addCriteriaBtn.setText("Add New Criteria");
+        addCriteriaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addCriteriaBtnMouseClicked(evt);
+            }
+        });
+        addCriteriaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCriteriaBtnActionPerformed(evt);
+            }
+        });
 
         deleteCriteriaBtn.setText("Delete Criteria");
 
@@ -555,6 +565,10 @@ public class PricingApp extends javax.swing.JFrame {
     private void discountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_discountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_discountActionPerformed
+
+    private void addCriteriaBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCriteriaBtnMouseClicked
+        
+    }//GEN-LAST:event_addCriteriaBtnMouseClicked
 
     /**
      * @param args the command line arguments
