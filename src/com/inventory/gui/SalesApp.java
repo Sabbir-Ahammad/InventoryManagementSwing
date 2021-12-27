@@ -5,8 +5,12 @@
  */
 package com.inventory.gui;
 
+import com.inventory.dao.PricingDAO;
+import com.inventory.model.Pricing;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -20,6 +24,15 @@ public class SalesApp extends javax.swing.JFrame {
     public SalesApp() {
         initComponents();
         getDateToshow();
+        priceCodeShow();
+    }
+    
+    List<Pricing> priceVar;
+    private void priceCodeShow(){
+         priceVar = new PricingDAO().getAll();
+         for (Pricing priceVar1 : priceVar) {
+            pricingCodeField.addItem(priceVar1.getPricingCode());
+        }
     }
     
     private void getDateToshow(){
@@ -93,6 +106,8 @@ public class SalesApp extends javax.swing.JFrame {
         orderingDateField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         paymentMethodField = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        pricingCodeField = new javax.swing.JComboBox();
         jPanel13 = new javax.swing.JPanel();
         addProducttBtn = new javax.swing.JButton();
         deleteProductBtn = new javax.swing.JButton();
@@ -200,7 +215,7 @@ public class SalesApp extends javax.swing.JFrame {
         branch1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         branch1.setForeground(new java.awt.Color(255, 255, 255));
         branch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/inventory/iconsImages/branch.png"))); // NOI18N
-        branch1.setText("Branch");
+        branch1.setText("Inventory");
         branch1.setIconTextGap(8);
         branch1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -482,15 +497,28 @@ public class SalesApp extends javax.swing.JFrame {
 
         jLabel18.setText("Payment Method");
 
+        jLabel25.setText("Pricing Criteria");
+
+        pricingCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select a criteria" }));
+        pricingCodeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pricingCodeFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(orderingDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addComponent(orderingDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pricingCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 5, Short.MAX_VALUE))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,9 +551,11 @@ public class SalesApp extends javax.swing.JFrame {
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(orderingDateField, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(orderingDateField)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pricingCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -546,7 +576,7 @@ public class SalesApp extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(paymentMethodField, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -822,7 +852,7 @@ public class SalesApp extends javax.swing.JFrame {
 
     private void purchaseorder1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseorder1MouseClicked
         this.setVisible(false);
-        new SalesApp().setVisible(true);
+        new PurchaseOrderApp().setVisible(true);
     }//GEN-LAST:event_purchaseorder1MouseClicked
 
     private void sales1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sales1MouseClicked
@@ -857,6 +887,10 @@ public class SalesApp extends javax.swing.JFrame {
     private void deleteProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProductBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteProductBtnActionPerformed
+   
+    private void pricingCodeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricingCodeFieldActionPerformed
+//        if(pricingCodeField.getSelectedItem().toString() = ""){}
+    }//GEN-LAST:event_pricingCodeFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -925,6 +959,7 @@ public class SalesApp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -952,6 +987,7 @@ public class SalesApp extends javax.swing.JFrame {
     private javax.swing.JTextField orderingDateField;
     private javax.swing.JTextField paymentMethodField;
     private javax.swing.JLabel pricing1;
+    private javax.swing.JComboBox pricingCodeField;
     private javax.swing.JTextField productCodefield;
     private javax.swing.JTextField productNameField;
     private javax.swing.JTextField productPriceField;
