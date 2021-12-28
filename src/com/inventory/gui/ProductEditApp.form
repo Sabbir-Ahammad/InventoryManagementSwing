@@ -248,7 +248,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/inventory/iconsImages/branch.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Branch"/>
+                <Property name="text" type="java.lang.String" value="Inventory"/>
                 <Property name="iconTextGap" type="int" value="8"/>
               </Properties>
               <Events>

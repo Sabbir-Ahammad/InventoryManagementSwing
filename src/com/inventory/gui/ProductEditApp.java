@@ -175,7 +175,7 @@ public class ProductEditApp extends javax.swing.JFrame {
         branch.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         branch.setForeground(new java.awt.Color(255, 255, 255));
         branch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/inventory/iconsImages/branch.png"))); // NOI18N
-        branch.setText("Branch");
+        branch.setText("Inventory");
         branch.setIconTextGap(8);
         branch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -700,7 +700,7 @@ public class ProductEditApp extends javax.swing.JFrame {
 
     private void salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesMouseClicked
         this.setVisible(false);
-        new SalesApp().setVisible(true);
+        new SalesAddApp().setVisible(true);
     }//GEN-LAST:event_salesMouseClicked
 
     private void pricingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pricingMouseClicked

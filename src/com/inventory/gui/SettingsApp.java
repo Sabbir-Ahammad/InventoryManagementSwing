@@ -319,7 +319,7 @@ public class SettingsApp extends javax.swing.JFrame {
 
     private void salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesMouseClicked
         this.setVisible(false);
-        new SalesApp().setVisible(true);
+        new SalesAddApp().setVisible(true);
     }//GEN-LAST:event_salesMouseClicked
 
     private void pricingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pricingMouseClicked
