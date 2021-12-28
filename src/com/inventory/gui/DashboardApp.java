@@ -309,7 +309,7 @@ public class DashboardApp extends javax.swing.JFrame {
 
     private void salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salesMouseClicked
         this.setVisible(false);
-        new SalesApp().setVisible(true);
+        new SalesAddApp().setVisible(true);
     }//GEN-LAST:event_salesMouseClicked
 
     private void purchaseorderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseorderMouseClicked

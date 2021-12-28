@@ -50,7 +50,7 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         dashboard1 = new javax.swing.JLabel();
         supplier1 = new javax.swing.JLabel();
-        branch1 = new javax.swing.JLabel();
+        inventory = new javax.swing.JLabel();
         products1 = new javax.swing.JLabel();
         category1 = new javax.swing.JLabel();
         purchaseorder1 = new javax.swing.JLabel();
@@ -197,14 +197,14 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
             }
         });
 
-        branch1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        branch1.setForeground(new java.awt.Color(255, 255, 255));
-        branch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/inventory/iconsImages/branch.png"))); // NOI18N
-        branch1.setText("Branch");
-        branch1.setIconTextGap(8);
-        branch1.addMouseListener(new java.awt.event.MouseAdapter() {
+        inventory.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        inventory.setForeground(new java.awt.Color(255, 255, 255));
+        inventory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/inventory/iconsImages/branch.png"))); // NOI18N
+        inventory.setText("Inventory");
+        inventory.setIconTextGap(8);
+        inventory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                branch1MouseClicked(evt);
+                inventoryMouseClicked(evt);
             }
         });
 
@@ -305,7 +305,7 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(dashboard1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(supplier1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(branch1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inventory, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(products1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(category1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(purchaseorder1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
@@ -324,7 +324,7 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(supplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(branch1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inventory, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(products1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -809,10 +809,10 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
         new SupplierApp().setVisible(true);
     }//GEN-LAST:event_supplier1MouseClicked
 
-    private void branch1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_branch1MouseClicked
+    private void inventoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryMouseClicked
         this.setVisible(false);
         new InventoryInfoApp().setVisible(true);
-    }//GEN-LAST:event_branch1MouseClicked
+    }//GEN-LAST:event_inventoryMouseClicked
 
     private void products1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_products1MouseClicked
         this.setVisible(false);
@@ -831,7 +831,7 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
 
     private void sales1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sales1MouseClicked
         this.setVisible(false);
-        new SalesApp().setVisible(true);
+        new SalesAddApp().setVisible(true);
     }//GEN-LAST:event_sales1MouseClicked
 
     private void pricing1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pricing1MouseClicked
@@ -900,7 +900,6 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProducttBtn;
-    private javax.swing.JLabel branch1;
     private javax.swing.JLabel category1;
     private javax.swing.JComboBox categoryCodeField;
     private javax.swing.JTextField categoryNameField;
@@ -909,6 +908,7 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
     private javax.swing.JButton deleteProductBtn;
     private javax.swing.JTextField discountField;
     private javax.swing.JTextField finalCostField;
+    private javax.swing.JLabel inventory;
     private javax.swing.JLabel invoices1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
