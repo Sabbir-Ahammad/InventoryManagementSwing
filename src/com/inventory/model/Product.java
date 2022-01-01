@@ -6,18 +6,17 @@ package com.inventory.model;
  * @author sabbir
  */
 public class Product {
-    private int productCode;
+    private String productCode;
     private String productName;
-    private int categoryCode;
+    private String categoryCode;
     private String categoryName;
-    private double price;
-    
+    private String productAttribute;
 
-    public int getProductCode() {
+    public String getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(int productCode) {
+    public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
 
@@ -29,11 +28,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public int getCategoryCode() {
+    public String getCategoryCode() {
         return categoryCode;
     }
 
-    public void setCategoryCode(int categoryCode) {
+    public void setCategoryCode(String categoryCode) {
         this.categoryCode = categoryCode;
     }
 
@@ -45,16 +44,12 @@ public class Product {
         this.categoryName = categoryName;
     }
 
-    public double getPrice() {
-        return price;
+    public String getProductAttribute() {
+        return productAttribute;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setProductAttribute(String productAttribute) {
+        this.productAttribute = productAttribute;
     }
-
-    
-
-    
     
 }

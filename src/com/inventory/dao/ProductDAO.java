@@ -24,18 +24,17 @@ public class ProductDAO implements ICommonInterface<Product>{
 
     @Override
     public int save(Product t) {
-        String sql = "insert into product (product_code, product_name, product_price, category_name, category_code) values (?, ?, ?, ?, ?)";
+        String sql = "insert into product (product_code, product_name, category_code, category_name, product_attributes) values (?, ?, ?, ?, ?)";
         int status = 0;
         try {
             con = DBConnection.getConnection();
             ps = con.prepareStatement(sql);
             System.out.println(t.getProductName());
-            ps.setInt(1, t.getProductCode());
+            ps.setString(1, t.getProductCode());
             ps.setString(2, t.getProductName());
-            ps.setDouble(3, t.getPrice());
-            
+            ps.setString(3, t.getCategoryCode());
             ps.setString(4, t.getCategoryName());
-            ps.setInt(5, t.getCategoryCode());
+            ps.setString(5, t.getProductAttribute());
             status = ps.executeUpdate();
         } catch (Exception e) {
         }finally{
@@ -61,7 +60,7 @@ public class ProductDAO implements ICommonInterface<Product>{
             try {
                 PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
                 status = ps.executeUpdate();
-                ps.setInt(1, t.getProductCode());
+                ps.setString(1, t.getProductCode());
             } catch (SQLException ex) {
                 Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
             }   
@@ -85,13 +84,13 @@ public class ProductDAO implements ICommonInterface<Product>{
             int i = 0;
             while(rs.next()){
                 Product product = new Product();
-                product.setProductCode(rs.getInt("product_code"));
+                product.setProductCode(rs.getString("product_code"));
                 product.setProductName(rs.getString("product_name"));
-                product.setPrice(rs.getDouble("product_price"));
+                product.setCategoryCode(rs.getString("category_code"));
                 product.setCategoryName(rs.getString("category_name"));
-                product.setCategoryCode(rs.getInt("product_code"));
-                i++;
+                product.setProductAttribute(rs.getString("product_attributes"));
                 products.add(product);
+                i++;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,17 +100,17 @@ public class ProductDAO implements ICommonInterface<Product>{
 
     @Override
     public int update(Product t) {
-        String sql = "update product set product_code = ?, product_name = ?, product_price = ?, category_name =?, category_code = ? where product_code = ?";
+        String sql = "update product set product_code = ?, product_name = ?, category_code = ?, category_name =?, product_attributes = ? where product_code = ?";
         int status = 0;
         try {
             con = DBConnection.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setInt(1, t.getProductCode());
+            ps.setString(1, t.getProductCode());
             ps.setString(2, t.getProductName());
-            ps.setDouble(3, t.getPrice());
-            ps.setString(4, t.getCategoryName());
-            ps.setInt(5, t.getCategoryCode());
-            ps.setInt(6, t.getProductCode());
+            ps.setString(3, t.getCategoryName());
+            ps.setString(4, t.getCategoryCode());
+            ps.setString(5, t.getProductAttribute());
+            ps.setString(6, t.getProductCode());
             status = ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
