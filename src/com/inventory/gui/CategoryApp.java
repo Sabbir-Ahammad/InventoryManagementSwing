@@ -34,7 +34,6 @@ public class CategoryApp extends javax.swing.JFrame {
     public CategoryApp() {
         initComponents();
         getAllCategory();
-        getTabledata(); 
     }
 
     /**
@@ -443,6 +442,11 @@ public class CategoryApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableShowCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableShowCategoryMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableShowCategory);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -620,6 +624,11 @@ public class CategoryApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteCategoryBtnActionPerformed
 
+    private void tableShowCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableShowCategoryMouseClicked
+        // TODO add your handling code here:
+        getTabledata();
+    }//GEN-LAST:event_tableShowCategoryMouseClicked
+
     public void getAllCategory(){
         List<Category> categories = new CategoryDAO().getAll();
         for (Category category1 : categories) {
@@ -640,16 +649,10 @@ public class CategoryApp extends javax.swing.JFrame {
     String catCodeVar;
     String catNameVar;
     public void getTabledata(){
-        tableShowCategory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
                 catCodeVar = (tableShowCategory.getValueAt(tableShowCategory.getSelectedRow(), 0)).toString();
                 catNameVar = (tableShowCategory.getValueAt(tableShowCategory.getSelectedRow(), 1)).toString();
                 catCodeField.setText(catCodeVar);
                 catNameField.setText(catNameVar);
-            }
-        });
     }
 
     String productCodeVar;

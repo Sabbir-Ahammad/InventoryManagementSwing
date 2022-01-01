@@ -35,7 +35,7 @@ public class ProductApp extends javax.swing.JFrame {
         initComponents();
         getCategoryData();
         getAllProduct();
-        getTableData();
+        //getTableData();
     }
 
     /**
@@ -380,13 +380,23 @@ public class ProductApp extends javax.swing.JFrame {
         jLabel7.setText("Product Attributes");
 
         categoryCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Category" }));
+        categoryCodeField.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                categoryCodeFieldItemStateChanged(evt);
+            }
+        });
         categoryCodeField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 categoryCodeFieldFocusLost(evt);
             }
         });
+        categoryCodeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryCodeFieldActionPerformed(evt);
+            }
+        });
 
-        categoryNameField.setText("Category Name");
+        categoryNameField.setToolTipText("");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -449,9 +459,8 @@ public class ProductApp extends javax.swing.JFrame {
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(productAttributeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(categoryNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(categoryNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -496,6 +505,11 @@ public class ProductApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableShowProduct.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableShowProductMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableShowProduct);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -688,30 +702,48 @@ public class ProductApp extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteProductBtnActionPerformed
 
     private void categoryCodeFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_categoryCodeFieldFocusLost
-//        Connection con;
-//        PreparedStatement ps;
-//        String c;
-//        c = categoryCodeField.getSelectedItem().toString();
-//        String sql = "select category_name from category where category_code = '"+c+"' ";
-//        String catName;
-//        try {
-//            con = DBConnection.getConnection();
-//            ps = con.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//            catName = rs.getString("category_name");
-//            System.out.println(catName);
-//            categoryNameField.setText(catName);
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        for (int i = 0; i < categoryDataVar.size(); i++) {
+//            if(categoryDataVar.get(i).getCategoryCode().equals(categoryCodeField.getSelectedItem().toString())){
+//                categoryNameField.setText(categoryDataVar.get(i).getCategoryName());
+//                System.out.println(categoryDataVar.get(i).getCategoryName());
+//            }
 //        }
     }//GEN-LAST:event_categoryCodeFieldFocusLost
 
-    List<Category> categoryDataVar;
+    private void tableShowProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableShowProductMouseClicked
+        // TODO add your handling code here:
+        getTableData();
+    }//GEN-LAST:event_tableShowProductMouseClicked
+
+    private void categoryCodeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryCodeFieldActionPerformed
+        
+        for (int i = 0; i < categoryDataVar.size(); i++) {
+            System.out.println(categoryCodeField.getSelectedItem().toString() + "  " + categoryDataVar.get(i).getCategoryName());
+            if(categoryDataVar.get(i).getCategoryCode().equals(categoryCodeField.getSelectedItem().toString())){
+                categoryNameField.setText(categoryDataVar.get(i).getCategoryName());
+//                System.out.println(categoryDataVar.get(i).getCategoryName() + "Nothing");
+            }
+        }
+    }//GEN-LAST:event_categoryCodeFieldActionPerformed
+
+    private void categoryCodeFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_categoryCodeFieldItemStateChanged
+//        for (int i = 0; i < categoryDataVar.size(); i++) {
+//            if(categoryDataVar.get(i).getCategoryCode().equals(categoryCodeField.getSelectedItem().toString())){
+//                categoryNameField.setText(categoryDataVar.get(i).getCategoryName());
+//                System.out.println(categoryDataVar.get(i).getCategoryName() + "Nothing");
+//            }
+//        }
+    }//GEN-LAST:event_categoryCodeFieldItemStateChanged
+
+    List<Category> categoryDataVar = new CategoryDAO().getAll();
 
     public void getCategoryData() {
-        categoryDataVar = new CategoryDAO().getAll();
-        for (Category categoryDataVar1 : categoryDataVar) {
-            categoryCodeField.addItem(categoryDataVar1.getCategoryName());
+//        categoryDataVar = new CategoryDAO().getAll();
+//        for (Category categoryDataVar1 : categoryDataVar) {
+//            categoryCodeField.addItem(categoryDataVar1.getCategoryName());
+//       
+        for (int i = 0; i < categoryDataVar.size(); i++) {
+            categoryCodeField.addItem(categoryDataVar.get(i).getCategoryName());
         }
     }
 
@@ -721,14 +753,14 @@ public class ProductApp extends javax.swing.JFrame {
         String data[][] = new String[products.size()][5];
         int i = 0;
 //            while(i<products.size()){
-        for (Product product : products) {
+        for (i=0; i<products.size(); i++) {
 
-            data[i][0] = product.getProductCode();
-            data[i][1] = product.getProductName();
-            data[i][2] = product.getCategoryName();
-            data[i][3] = product.getCategoryCode();
-            data[i][4] = product.getProductAttribute();
-            i++;
+            data[i][0] = products.get(i).getProductCode();
+            data[i][1] = products.get(i).getProductName();
+            data[i][2] = products.get(i).getCategoryName();
+            data[i][3] = products.get(i).getCategoryCode();
+            data[i][4] = products.get(i).getProductAttribute();
+           
         }
 //        }
         DefaultTableModel model = new DefaultTableModel(data, colums);
@@ -736,9 +768,7 @@ public class ProductApp extends javax.swing.JFrame {
     }
 
     private void getTableData() {
-        tableShowProduct.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
+        
                 int pCV = tableShowProduct.getSelectedRow();
                 productCodeVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 0).toString();
                 productNameVar = tableShowProduct.getValueAt(tableShowProduct.getSelectedRow(), 1).toString();
@@ -753,8 +783,7 @@ public class ProductApp extends javax.swing.JFrame {
                 productAttributeField.setText(productAttributeVar);
                 System.out.println(productCodeVar + " " + productNameVar + " " + productAttributeVar
                         + " " + categoryNameVar + " " + categoryCodeVar);
-            }
-        });
+       
     }
 
     String productCodeVar;

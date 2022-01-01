@@ -70,9 +70,9 @@ public class InventoryInfoApp extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        addSupplierBtn = new javax.swing.JButton();
-        updateSupplierBtn = new javax.swing.JButton();
-        deleteSupplierBtn = new javax.swing.JButton();
+        addInventoryBtn = new javax.swing.JButton();
+        updateInventoryBtn = new javax.swing.JButton();
+        deleteInventoryBtn = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         iCode = new javax.swing.JTextField();
@@ -345,27 +345,27 @@ public class InventoryInfoApp extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        addSupplierBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        addSupplierBtn.setText("Add Inventory");
-        addSupplierBtn.addActionListener(new java.awt.event.ActionListener() {
+        addInventoryBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addInventoryBtn.setText("Add Inventory");
+        addInventoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSupplierBtnActionPerformed(evt);
+                addInventoryBtnActionPerformed(evt);
             }
         });
 
-        updateSupplierBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        updateSupplierBtn.setText("Update Inventory");
-        updateSupplierBtn.addActionListener(new java.awt.event.ActionListener() {
+        updateInventoryBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        updateInventoryBtn.setText("Update Inventory");
+        updateInventoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateSupplierBtnActionPerformed(evt);
+                updateInventoryBtnActionPerformed(evt);
             }
         });
 
-        deleteSupplierBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        deleteSupplierBtn.setText("Delete Inventory");
-        deleteSupplierBtn.addActionListener(new java.awt.event.ActionListener() {
+        deleteInventoryBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        deleteInventoryBtn.setText("Delete Inventory");
+        deleteInventoryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteSupplierBtnActionPerformed(evt);
+                deleteInventoryBtnActionPerformed(evt);
             }
         });
 
@@ -464,11 +464,11 @@ public class InventoryInfoApp extends javax.swing.JFrame {
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
-                        .addComponent(addSupplierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addInventoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(updateSupplierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(updateInventoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteSupplierBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deleteInventoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -477,9 +477,9 @@ public class InventoryInfoApp extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(deleteSupplierBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(updateSupplierBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addSupplierBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
+                    .addComponent(deleteInventoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateInventoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addInventoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7))
@@ -498,6 +498,11 @@ public class InventoryInfoApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        inventoryShowTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inventoryShowTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(inventoryShowTable);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -636,7 +641,7 @@ public class InventoryInfoApp extends javax.swing.JFrame {
         new StockReportApp().setVisible(true);
     }//GEN-LAST:event_stockMouseClicked
 
-    private void addSupplierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSupplierBtnActionPerformed
+    private void addInventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addInventoryBtnActionPerformed
         Inventory inventory = new Inventory();
         inventory.setInventoryCode(iCode.getText());
         inventory.setInventoryName(iName.getText());
@@ -651,9 +656,9 @@ public class InventoryInfoApp extends javax.swing.JFrame {
 
         }
         getAllInventory();
-    }//GEN-LAST:event_addSupplierBtnActionPerformed
+    }//GEN-LAST:event_addInventoryBtnActionPerformed
 
-    private void updateSupplierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateSupplierBtnActionPerformed
+    private void updateInventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateInventoryBtnActionPerformed
         Inventory inventory = new Inventory();
         inventory.setInventoryCode(iCode.getText());
         inventory.setInventoryName(iName.getText());
@@ -666,10 +671,11 @@ public class InventoryInfoApp extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Inventory Not Update!");
         }
-    }//GEN-LAST:event_updateSupplierBtnActionPerformed
+        getAllInventory();
+    }//GEN-LAST:event_updateInventoryBtnActionPerformed
 
-    private void deleteSupplierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSupplierBtnActionPerformed
-        Inventory inventory = new Inventory();       
+    private void deleteInventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteInventoryBtnActionPerformed
+        Inventory inventory = new Inventory();
         int option = JOptionPane.showConfirmDialog(rootPane, "Do you want to delete?", null, WIDTH);
         if (option == 0) {
             inventory.setInventoryCode(iCode.getText());
@@ -681,37 +687,35 @@ public class InventoryInfoApp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Inventory Not delete!");
             }
         }
-    }//GEN-LAST:event_deleteSupplierBtnActionPerformed
+    }//GEN-LAST:event_deleteInventoryBtnActionPerformed
 
     private void iContractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iContractActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_iContractActionPerformed
 
-    public void getAllInventory(){
+    private void inventoryShowTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryShowTableMouseClicked
+        iCode.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 0).toString());
+        iName.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 1).toString());
+        iContract.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 2).toString());
+        iEmail.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 3).toString());
+        iLocation.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_inventoryShowTableMouseClicked
+
+    public void getAllInventory() {
         List<Inventory> inventory = new InventoryDAO().getAll();
         String[] columnNames = {"Inventory Code", "Inventory Name", "Contract No.", "E-mail", "Location"};
         String data[][] = new String[inventory.size()][5];
-        int i =0;
+        int i = 0;
         for (Inventory ss : inventory) {
-                data[i][0] = ss.getInventoryCode();
-                data[i][1] = ss.getInventoryName();
-                data[i][2] = ss.getContractNo();
-                data[i][3] = ss.getEmail();
-                data[i][4] = ss.getLocation();
-                i++;
-            }
+            data[i][0] = ss.getInventoryCode();
+            data[i][1] = ss.getInventoryName();
+            data[i][2] = ss.getContractNo();
+            data[i][3] = ss.getEmail();
+            data[i][4] = ss.getLocation();
+            i++;
+        }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         inventoryShowTable.setModel(model);
-        inventoryShowTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                iCode.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 0).toString());
-                iName.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 1).toString());
-                iContract.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 2).toString());
-                iEmail.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 3).toString());
-                iLocation.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 4).toString());
-            }
-        });
     }
 
     String productCodeVar;
@@ -1011,11 +1015,11 @@ public class InventoryInfoApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addSupplierBtn;
+    private javax.swing.JButton addInventoryBtn;
     private javax.swing.JLabel branch;
     private javax.swing.JLabel category;
     private javax.swing.JLabel dashboard;
-    private javax.swing.JButton deleteSupplierBtn;
+    private javax.swing.JButton deleteInventoryBtn;
     private javax.swing.JTextField iCode;
     private javax.swing.JTextField iContract;
     private javax.swing.JTextField iEmail;
@@ -1048,6 +1052,6 @@ public class InventoryInfoApp extends javax.swing.JFrame {
     private javax.swing.JLabel settings;
     private javax.swing.JLabel stock;
     private javax.swing.JLabel supplier;
-    private javax.swing.JButton updateSupplierBtn;
+    private javax.swing.JButton updateInventoryBtn;
     // End of variables declaration//GEN-END:variables
 }

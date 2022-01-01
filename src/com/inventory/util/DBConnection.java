@@ -12,7 +12,7 @@ public class DBConnection {
     Connection con = null;
     String url = "jdbc:mysql://localhost:3306/inventory_management";
     String user = "root";
-    String pass = "root";
+    String pass = "1234";
         try {
             con = DriverManager.getConnection(url, user, pass);
         } catch (SQLException ex) {

@@ -29,7 +29,6 @@ public class PurchaseOrderApp extends javax.swing.JFrame {
         System.out.println(formatter.format(date));
         orderingDateField.setText(formatter.format(date));
         orderingDateField.setEditable(false);
-        
     }
     /**
      * This method is called from within the constructor to initialize the form.

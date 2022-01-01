@@ -20,6 +20,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,8 +43,18 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
         initComponents();
         getAllPricing();
         getTabledata();
+        getDateToshow();
     }
-
+    
+    private void getDateToshow(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+        Date date = new Date();
+        String showDate = date.toString();
+        System.out.println(formatter.format(date));
+        orderingDateField.setText(formatter.format(date));
+        orderingDateField.setEditable(false);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -361,7 +373,7 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 1, new java.awt.Color(255, 255, 255)));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel4.setText("Pricing");
+        jLabel4.setText("Purchase order");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -801,7 +813,7 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGap(0, 529, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(32, 32, 32)

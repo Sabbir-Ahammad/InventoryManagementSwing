@@ -37,7 +37,7 @@ public class InventoryDAO implements ICommonInterface<Inventory>{
             ps.setString(3, t.getContractNo());
             ps.setString(4, t.getEmail());
             ps.setString(5, t.getLocation());
-            ps.executeUpdate();
+            status = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
