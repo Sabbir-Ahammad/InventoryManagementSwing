@@ -670,28 +670,28 @@
                         <Component class="javax.swing.JComboBox" name="productCodeField">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
+                              <StringArray count="1">
+                                <StringItem index="0" value="Select Product Code"/>
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="productCodeFieldActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JTextField" name="productNameField">
                         </Component>
                         <Component class="javax.swing.JComboBox" name="categoryCodeField">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
+                              <StringArray count="1">
+                                <StringItem index="0" value="Select Category code"/>
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryCodeFieldActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -708,27 +708,25 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabel9" min="-2" pref="97" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="supplierNameField" pref="143" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel10" min="-2" pref="97" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="supplierCodeField" min="-2" pref="143" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel11" min="-2" pref="97" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="supplierAddressField" min="-2" pref="143" max="-2" attributes="0"/>
-                                                  </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel9" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="supplierCodeField" pref="143" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel10" min="-2" pref="97" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="supplierNameField" min="-2" pref="143" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel11" min="-2" pref="97" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="supplierAddressField" min="-2" pref="143" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -742,12 +740,12 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel9" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="supplierNameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="supplierCodeField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel10" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="supplierCodeField" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="supplierNameField" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -770,15 +768,15 @@
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel9">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Name"/>
+                            <Property name="text" type="java.lang.String" value="Code"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel10">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="Code"/>
+                            <Property name="text" type="java.lang.String" value="Name"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="supplierCodeField">
+                        <Component class="javax.swing.JTextField" name="supplierNameField">
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel11">
                           <Properties>
@@ -787,17 +785,17 @@
                         </Component>
                         <Component class="javax.swing.JTextField" name="supplierAddressField">
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="supplierNameField">
+                        <Component class="javax.swing.JComboBox" name="supplierCodeField">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
+                              <StringArray count="1">
+                                <StringItem index="0" value="Select Supplier Code"/>
                               </StringArray>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="supplierCodeFieldActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

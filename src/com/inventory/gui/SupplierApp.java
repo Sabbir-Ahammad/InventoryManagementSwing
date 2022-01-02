@@ -600,7 +600,7 @@ public class SupplierApp extends javax.swing.JFrame {
 
     private void categoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryMouseClicked
         this.setVisible(false);
-        new SupplierApp().setVisible(true);
+        new CategoryApp().setVisible(true);
     }//GEN-LAST:event_categoryMouseClicked
 
     private void purchaseorderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purchaseorderMouseClicked

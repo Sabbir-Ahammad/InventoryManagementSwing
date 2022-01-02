@@ -41,8 +41,29 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
         initComponents();
         getAllPricing();
         getTabledata();
+        getCategoryData();
+        getProductData();
+        getSupplierData();
     }
-
+    
+    List<Category> categoryDataVar = new CategoryDAO().getAll();
+    List<Product> productDataVar = new ProductDAO().getAll();
+    List<Supplier> supplierDataVar = new SupplierDAO().getAll();
+    public void getCategoryData() {
+        for (Category categoryDataVar1 : categoryDataVar) {
+            categoryCodeField.addItem(categoryDataVar1.getCategoryCode());
+        }
+    }
+    public void getProductData(){
+        for (Product prc : productDataVar) {
+            productCodeField.addItem(prc.getProductCode());
+        }
+    }
+    public void getSupplierData(){
+        for (Supplier sc : supplierDataVar) {
+            supplierCodeField.addItem(sc.getSupplierCode());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,10 +109,10 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        supplierCodeField = new javax.swing.JTextField();
+        supplierNameField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         supplierAddressField = new javax.swing.JTextField();
-        supplierNameField = new javax.swing.JComboBox();
+        supplierCodeField = new javax.swing.JComboBox();
         jPanel13 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -401,9 +422,19 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
 
         jLabel7.setText("Category Code");
 
-        productCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        productCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Product Code" }));
+        productCodeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productCodeFieldActionPerformed(evt);
+            }
+        });
 
-        categoryCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Category code" }));
+        categoryCodeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryCodeFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -452,13 +483,18 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setText("Supplier Info");
 
-        jLabel9.setText("Name");
+        jLabel9.setText("Code");
 
-        jLabel10.setText("Code");
+        jLabel10.setText("Name");
 
         jLabel11.setText("Address");
 
-        supplierNameField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        supplierCodeField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select Supplier Code" }));
+        supplierCodeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supplierCodeFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -467,22 +503,21 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(supplierNameField, 0, 143, Short.MAX_VALUE))
-                        .addGroup(jPanel12Layout.createSequentialGroup()
-                            .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel12Layout.createSequentialGroup()
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(supplierCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel12Layout.createSequentialGroup()
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(supplierAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(supplierCodeField, 0, 143, Short.MAX_VALUE))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(supplierNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(supplierAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -492,11 +527,11 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supplierNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(supplierCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(supplierCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(supplierNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -934,6 +969,34 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
     private void deleteProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteProductBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_deleteProductBtnActionPerformed
+
+    private void categoryCodeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryCodeFieldActionPerformed
+        for (int i = 0; i < categoryDataVar.size(); i++) {
+//            System.out.println(categoryDataVar.get(i).getCategoryCode());
+            if (categoryDataVar.get(i).getCategoryCode().equals(categoryCodeField.getSelectedItem().toString())) {
+                categoryNameField.setText(categoryDataVar.get(i).getCategoryName());
+            }
+        }
+    }//GEN-LAST:event_categoryCodeFieldActionPerformed
+
+    private void productCodeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productCodeFieldActionPerformed
+        for (int i = 0; i < productDataVar.size(); i++) {
+//            System.out.println(categoryDataVar.get(i).getCategoryCode());
+            if (productDataVar.get(i).getProductCode().equals(productCodeField.getSelectedItem().toString())) {
+                productNameField.setText(productDataVar.get(i).getProductName());
+            }
+        }
+    }//GEN-LAST:event_productCodeFieldActionPerformed
+
+    private void supplierCodeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierCodeFieldActionPerformed
+        for (int i = 0; i < supplierDataVar.size(); i++) {
+//            System.out.println(categoryDataVar.get(i).getCategoryCode());
+            if (supplierDataVar.get(i).getSupplierCode().equals(supplierCodeField.getSelectedItem().toString())) {
+                supplierNameField.setText(supplierDataVar.get(i).getSupplierName());
+                supplierAddressField.setText(supplierDataVar.get(i).getAddress());
+            }
+        }
+    }//GEN-LAST:event_supplierCodeFieldActionPerformed
     
     public void getAllPricing(){
         List<Pricing> pricings = new PricingDAO().getAll();
@@ -3126,8 +3189,8 @@ public class PurchaseOrderApp1 extends javax.swing.JFrame {
     private javax.swing.JLabel stock;
     private javax.swing.JLabel supplier;
     private javax.swing.JTextField supplierAddressField;
-    private javax.swing.JTextField supplierCodeField;
-    private javax.swing.JComboBox supplierNameField;
+    private javax.swing.JComboBox supplierCodeField;
+    private javax.swing.JTextField supplierNameField;
     private javax.swing.JTextField totalCostField;
     private javax.swing.JTextField totalDiscountField;
     private javax.swing.JTextField totalVatField;
