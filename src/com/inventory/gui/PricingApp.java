@@ -466,6 +466,11 @@ public class PricingApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableShowPricing.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableShowPricingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableShowPricing);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -624,8 +629,11 @@ public class PricingApp extends javax.swing.JFrame {
         price.setVatRate(vatRateField.getText());
         price.setDiscount(discountField.getText());
         int status = new PricingDAO().update(price);
-        if(status > 0 ) JOptionPane.showMessageDialog(rootPane, "Category Saved!");
-        else JOptionPane.showMessageDialog(rootPane, "Category not Saved!");
+        if (status > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Category Saved!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Category not Saved!");
+        }
         getAllPricing();
     }//GEN-LAST:event_updateCriteriaBtnActionPerformed
 
@@ -643,44 +651,41 @@ public class PricingApp extends javax.swing.JFrame {
         }
         getAllPricing();
     }//GEN-LAST:event_deleteCriteriaBtnActionPerformed
-    
-    public void getAllPricing(){
+
+    private void tableShowPricingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableShowPricingMouseClicked
+        getTabledata();
+    }//GEN-LAST:event_tableShowPricingMouseClicked
+
+    public void getAllPricing() {
         List<Pricing> pricings = new PricingDAO().getAll();
         String columns[] = {"Pricing Code", "Vat Rate", "Discount"};
-        String data[][] = new String[pricings.size()][5];
-        int i =0;
+        String data[][] = new String[pricings.size()][3];
+        int i = 0;
         for (Pricing p : pricings) {
-                data[i][0] = p.getPricingCode();
-                data[i][1] = p.getVatRate();
-                data[i][2] = p.getDiscount();
-                i++;
-            }
+            data[i][0] = p.getPricingCode();
+            data[i][1] = p.getVatRate();
+            data[i][2] = p.getDiscount();
+            i++;
+        }
         DefaultTableModel model = new DefaultTableModel(data, columns);
         tableShowPricing.setModel(model);
     }
     String pricingCodeVar;
     String vatVar;
     String discountVar;
-    public void getTabledata(){
-        tableShowPricing.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                pricingCodeVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 0)).toString();
-                vatVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 1)).toString();
-                discountVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 2)).toString();
-                pricingCodeField.setText(pricingCodeVar);
-                vatRateField.setText(vatVar);
-                discountField.setText(discountVar);
-            }
-        });
+    public void getTabledata() {
+        try {
+            pricingCodeVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 0)).toString();
+            vatVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 1)).toString();
+            discountVar = (tableShowPricing.getValueAt(tableShowPricing.getSelectedRow(), 2)).toString();
+            pricingCodeField.setText(pricingCodeVar);
+            vatRateField.setText(vatVar);
+            discountField.setText(discountVar);
+        } catch (Exception e) {
+            System.out.println("The table is empty");
+        }
     }
-
-    String productCodeVar;
-    String productNameVar;
-    String categoryNameVar;
-    String categoryCodeVar;
-    String productAttributeVar;
 
     /**
      * @param args the command line arguments

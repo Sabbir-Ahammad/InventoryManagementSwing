@@ -710,13 +710,10 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="categoryCodeFieldFocusLost"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryCodeFieldActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="categoryNameField">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Category Name"/>
-                      </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="productAttributeField">
                     </Component>
@@ -765,6 +762,9 @@
                           </Table>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableShowProductMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

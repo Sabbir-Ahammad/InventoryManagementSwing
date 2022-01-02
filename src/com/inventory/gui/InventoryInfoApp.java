@@ -498,6 +498,11 @@ public class InventoryInfoApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        inventoryShowTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inventoryShowTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(inventoryShowTable);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -669,7 +674,7 @@ public class InventoryInfoApp extends javax.swing.JFrame {
     }//GEN-LAST:event_updateSupplierBtnActionPerformed
 
     private void deleteSupplierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSupplierBtnActionPerformed
-        Inventory inventory = new Inventory();       
+        Inventory inventory = new Inventory();
         int option = JOptionPane.showConfirmDialog(rootPane, "Do you want to delete?", null, WIDTH);
         if (option == 0) {
             inventory.setInventoryCode(iCode.getText());
@@ -687,31 +692,29 @@ public class InventoryInfoApp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_iContractActionPerformed
 
-    public void getAllInventory(){
+    private void inventoryShowTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventoryShowTableMouseClicked
+        iCode.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 0).toString());
+        iName.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 1).toString());
+        iContract.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 2).toString());
+        iEmail.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 3).toString());
+        iLocation.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_inventoryShowTableMouseClicked
+
+    public void getAllInventory() {
         List<Inventory> inventory = new InventoryDAO().getAll();
         String[] columnNames = {"Inventory Code", "Inventory Name", "Contract No.", "E-mail", "Location"};
         String data[][] = new String[inventory.size()][5];
-        int i =0;
+        int i = 0;
         for (Inventory ss : inventory) {
-                data[i][0] = ss.getInventoryCode();
-                data[i][1] = ss.getInventoryName();
-                data[i][2] = ss.getContractNo();
-                data[i][3] = ss.getEmail();
-                data[i][4] = ss.getLocation();
-                i++;
-            }
+            data[i][0] = ss.getInventoryCode();
+            data[i][1] = ss.getInventoryName();
+            data[i][2] = ss.getContractNo();
+            data[i][3] = ss.getEmail();
+            data[i][4] = ss.getLocation();
+            i++;
+        }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         inventoryShowTable.setModel(model);
-        inventoryShowTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                iCode.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 0).toString());
-                iName.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 1).toString());
-                iContract.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 2).toString());
-                iEmail.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 3).toString());
-                iLocation.setText(inventoryShowTable.getValueAt(inventoryShowTable.getSelectedRow(), 4).toString());
-            }
-        });
     }
 
     String productCodeVar;

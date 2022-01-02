@@ -496,6 +496,11 @@ public class SupplierApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableShowSupplier.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableShowSupplierMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableShowSupplier);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -642,8 +647,11 @@ public class SupplierApp extends javax.swing.JFrame {
         s.setCompanyName(cName.getText());
         s.setAddress(sAddress.getText());
         int status = new SupplierDAO().save(s);
-        if(status > 0 ) JOptionPane.showMessageDialog(rootPane, "Supplier Data Saved!");
-        else JOptionPane.showMessageDialog(rootPane, "Supplier Data could not be Saved!");
+        if (status > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Supplier Data Saved!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Supplier Data could not be Saved!");
+        }
         getAllSupplier();
     }//GEN-LAST:event_addSupplierBtnActionPerformed
 
@@ -655,8 +663,11 @@ public class SupplierApp extends javax.swing.JFrame {
         supplierupdate.setCompanyName(cName.getText());
         supplierupdate.setAddress(sAddress.getText());
         int status = new SupplierDAO().update(supplierupdate);
-        if(status > 0 ) JOptionPane.showMessageDialog(rootPane, "Supplier Data Saved!");
-        else JOptionPane.showMessageDialog(rootPane, "Supplier Data not Saved!");
+        if (status > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Supplier Data Saved!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Supplier Data not Saved!");
+        }
     }//GEN-LAST:event_updateSupplierBtnActionPerformed
 
     private void deleteSupplierBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSupplierBtnActionPerformed
@@ -678,35 +689,33 @@ public class SupplierApp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cCodeActionPerformed
 
-    private void getAllSupplier(){
+    private void tableShowSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableShowSupplierMouseClicked
+        int pCV = tableShowSupplier.getSelectedRow();
+        sCode.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 0).toString());
+        sName.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 1).toString());
+        cCode.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 2).toString());
+        cName.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 3).toString());
+        sAddress.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_tableShowSupplierMouseClicked
+
+    private void getAllSupplier() {
         List<Supplier> suppliers = new SupplierDAO().getAll();
         for (Supplier supplier1 : suppliers) {
-            System.out.println(supplier1.getSupplierCode() + " " +supplier1.getSupplierName());
+            System.out.println(supplier1.getSupplierCode() + " " + supplier1.getSupplierName());
         }
         String columns[] = {"Supplier Code", "Supplier Name", "Company Code", "Company Name", "Address"};
         String data[][] = new String[suppliers.size()][5];
-        int i =0;
+        int i = 0;
         for (Supplier ss : suppliers) {
-                data[i][0] = ss.getSupplierCode();
-                data[i][1] = ss.getSupplierName();
-                data[i][2] = ss.getCompanyCode();
-                data[i][3] = ss.getCompanyName();
-                data[i][4] = ss.getAddress();
-                i++;
-            }
+            data[i][0] = ss.getSupplierCode();
+            data[i][1] = ss.getSupplierName();
+            data[i][2] = ss.getCompanyCode();
+            data[i][3] = ss.getCompanyName();
+            data[i][4] = ss.getAddress();
+            i++;
+        }
         DefaultTableModel model = new DefaultTableModel(data, columns);
         tableShowSupplier.setModel(model);
-        tableShowSupplier.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-                @Override
-                public void valueChanged(ListSelectionEvent e) {
-                    int pCV = tableShowSupplier.getSelectedRow();
-                    sCode.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 0).toString());
-                    sName.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 1).toString());
-                    cCode.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 2).toString());
-                    cName.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 3).toString());
-                    sAddress.setText(tableShowSupplier.getValueAt(tableShowSupplier.getSelectedRow(), 4).toString());
-                }
-            });
     }
 
     String productCodeVar;

@@ -34,7 +34,6 @@ public class CategoryApp extends javax.swing.JFrame {
     public CategoryApp() {
         initComponents();
         getAllCategory();
-        getTabledata(); 
     }
 
     /**
@@ -443,6 +442,11 @@ public class CategoryApp extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableShowCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableShowCategoryMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableShowCategory);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -600,8 +604,11 @@ public class CategoryApp extends javax.swing.JFrame {
         cat.setCategoryCode(catCodeField.getText());
         cat.setCategoryName(catNameField.getText());
         int status = new CategoryDAO().update(cat);
-        if(status > 0 ) JOptionPane.showMessageDialog(rootPane, "Category Saved!");
-        else JOptionPane.showMessageDialog(rootPane, "Category not Saved!");
+        if (status > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Category Saved!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Category not Saved!");
+        }
         getAllCategory();
     }//GEN-LAST:event_updateCategoryBtnActionPerformed
 
@@ -620,36 +627,39 @@ public class CategoryApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteCategoryBtnActionPerformed
 
-    public void getAllCategory(){
+    private void tableShowCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableShowCategoryMouseClicked
+        getTabledata();
+    }//GEN-LAST:event_tableShowCategoryMouseClicked
+
+    public void getAllCategory() {
         List<Category> categories = new CategoryDAO().getAll();
         for (Category category1 : categories) {
             System.out.println(category1.getCategoryName());
         }
         String columns[] = {"Category name", "Category Code"};
         String data[][] = new String[categories.size()][5];
-        int i =0;
+        int i = 0;
         for (Category ss : categories) {
-                data[i][0] = ss.getCategoryCode();
-                data[i][1] = ss.getCategoryName();
-                i++;
-            }
+            data[i][0] = ss.getCategoryCode();
+            data[i][1] = ss.getCategoryName();
+            i++;
+        }
         DefaultTableModel model = new DefaultTableModel(data, columns);
         tableShowCategory.setModel(model);
     }
 
     String catCodeVar;
     String catNameVar;
-    public void getTabledata(){
-        tableShowCategory.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                catCodeVar = (tableShowCategory.getValueAt(tableShowCategory.getSelectedRow(), 0)).toString();
-                catNameVar = (tableShowCategory.getValueAt(tableShowCategory.getSelectedRow(), 1)).toString();
-                catCodeField.setText(catCodeVar);
-                catNameField.setText(catNameVar);
-            }
-        });
+    public void getTabledata() {
+        try {
+            catCodeVar = (tableShowCategory.getValueAt(tableShowCategory.getSelectedRow(), 0)).toString();
+            catNameVar = (tableShowCategory.getValueAt(tableShowCategory.getSelectedRow(), 1)).toString();
+            catCodeField.setText(catCodeVar);
+            catNameField.setText(catNameVar);
+        } catch (Exception e) {
+            System.out.println("No data in table");
+        }
     }
 
     String productCodeVar;
